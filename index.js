@@ -1,21 +1,21 @@
-const textArea=document.getElementById("textarea");
-const speechBtn=document.getElementById("btn");
-const selectVoice=document.getElementById("select");
+const textArea = document.getElementById("textarea");
+const speechBtn = document.getElementById("btn");
+speechBtn.disabled = true;
 
-// function voices(){
-//     speechSynthesis.getVoices().forEach(function(voice) {
-//         console.log(voice.name, voice.default ? voice.default :'');
-//       });
-
-// }
-
-function textToSpeech(text){
-var msg = new SpeechSynthesisUtterance(text);
-window.speechSynthesis.speak(msg);
+function textToSpeech(text) {
+    var msg = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(msg);
 }
 
-speechBtn.addEventListener("click", speak =>{
-    textToSpeech(textArea.value);
+textArea.addEventListener("keydown", speak => {
+    if (textArea.value.length != 0) {
+        speechBtn.disabled = false;
+    } else {
+        speechBtn.disabled = true;
+    }
+
 });
 
-selectVoice.addEventListener("change",)
+speechBtn.addEventListener("click", speak => {
+    textToSpeech(textArea.value);
+});
